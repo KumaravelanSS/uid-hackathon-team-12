@@ -1,0 +1,71 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Campus Sports Meet 2026</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Campus Sports Meet 2026</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="sports.html" class="active">Sports</a>
+            <a href="feedback1.html">Feedback</a>
+        </nav>
+    </header>
+
+    <main>
+        <img src="bgimg.png" max-width=100% height=auto alt="sports image">
+        <h2>Available Sports</h2>
+        <section class="category-grid">
+<h3>*Cricket</h3>
+<h3>*Football</h3>
+<h3>*Hockey</h3>
+<h3>*Basket Ball</h3>
+<h3>*Batmitton</h3>
+        </section>
+
+        <h2>Player Registration form</h2>
+        <section id="registration-alert" class="alert"></section>
+
+        <form id="sportsform">
+            <p><label>Student Name</label><input type="text" id="student-name"><span class="error-msg" id="err-name">Name is required.</span></p>
+            <p><label>Register Number</label><input type="text" id="register-number"><span class="error-msg" id="err-reg">Register number is required.</span></p>
+            
+            <p><label>Email ID</label><input type="email" id="student-email"><span class="error-msg" id="err-email">Enter a valid email format.</span></p>
+            <p><label>Mobile Number</label><input type="text" id="mobile-number"><span class="error-msg" id="err-mobile">Enter a valid 10-digit number.</span></p>
+            
+            <p><label>Department Name</label><input type="text" id="department"><span class="error-msg" id="err-dept">Department is required.</span></p>
+            <p><label>Year of Study</label><input type="number" id="year-of-study"><span class="error-msg" id="err-year">Year is required.</span></p>
+            
+           
+            
+            <p><label>Sports Category</label>
+                <select id="sports-category">
+                    <option value="">-- Select --</option>
+                    <option value="s1">Cricket</option>
+                    <option value="s2">Football</option>
+                    <option value="s3">Hockey</option>
+                    <option value="s4">Basketball</option>
+                    <option value="s5">Batmitton</option>
+                </select>
+                <span class="error-msg" id="err-cat">Please select a valid open category.</span>
+            </p>
+            <p><label>Team Size</label><input type="number" id="team-size"><span class="error-msg" id="err-size">Team size must be between 2 and 6.</span></p>
+            
+            <p class="full-width"><label>Team Name </label><input type="text" id="team-name"><span class="error-msg" id="err-team">Team name is required.</span></p>
+            
+            <button type="submit" class="full-width">Finalize Project Submission</button>
+        </form>
+
+        <div id="preview-box" style="display:none; border: 2px dashed #15803d; padding: 1rem; margin-top: 1.5rem; background: #f0fdf4;">
+            <h4 style="color:#15803d; margin:0 0 0.5rem 0;">✓ Registration Receipt Logged:</h4>
+            <p id="preview-text" style="margin:0; font-size:0.9rem;"></p>
+        </div>
+    </main>
+
+    <footer>&copy; 2026 Depart of Sports</footer>
+    <script src="script.js"></script>
+</body>
+</html>

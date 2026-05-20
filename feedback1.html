@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sports Feedback </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Sports Meet 2026</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="sports.html">Sports</a>
+            <a href="feedback1.html" class="active">Feedback</a>
+        </nav>
+    </header>
+
+    <main>
+        <h3>Sports Feedback</h3>
+
+        <h3>Submit your experience</h3>
+        <section id="feedback-alert" class="alert"></section>
+
+        <form id="feedback-form">
+            <p><label>Player Name</label><input type="text" id="fb-name"><span class="error-msg" id="err-fb-name">Name is required.</span></p>
+            <p><label>Register Number</label><input type="text" id="fb-reg"><span class="error-msg" id="err-fb-reg">Register number is required.</span></p>
+            
+            <p><label>Event Attended:</label>
+                <select id="fb-cat">
+                    <option value="">-- Select --</option>
+                    <option value="s1">cricket</option>
+                    <option value="s2">football</option>
+                    <option value="s3">hockey</option>
+                    <option value="s4">basketball</option>
+                    <option value="s5">batmitton</option>
+                </select>
+                <span class="error-msg" id="err-fb-cat">Event selection is required.</span>
+            </p>
+            <p><label>Rating:</label>
+                <select id="fb-rating">
+                    <option value="">-- Select --</option>
+                    <option value="5">5 - Excellent Build</option>
+                    <option value="4">4 - Good Design</option>
+                    <option value="3">3 - Satisfactory</option>
+                    <option value="2">2 - Needs Rework</option>
+                    <option value="1">1 - Poor Execution</option>
+                </select>
+                <span class="error-msg" id="err-fb-rating">Rating score selection is required.</span>
+            </p>
+            
+            <p class="full-width"><label>Review Analysis Comments (Min 20 characters)</label><textarea id="fb-comments" rows="3"></textarea><span class="error-msg" id="err-fb-comm">Comments must span 20 or more character units.</span></p>
+            
+            <button type="submit" class="full-width">Publish Performance </button>
+        </form>
+
+        <h3>Live Feedback History Feed</h3>
+        <section id="logs-container"></section>
+    </main>
+
+    <footer>&copy; 2026 Depart of Sports</footer>
+
+    <script>
+        let feedbackRecords = [];
+
+        const feedbackFormElement = document.getElementById('feedback-form');
+        if (feedbackFormElement) {
+            feedbackFormElement.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const fbName = document.getElementById('fb-name').value.trim();
+                const fbReg = document.getElementById('fb-reg').value.trim();
+                const fbCatSelect = document.getElementById('fb-cat');
+                const fbCatValue = fbCatSelect.value;
+                const fbCatText = fbCatSelect.options[fbCatSelect.selectedIndex].text;
+                const fbRatingSelect = document.getElementById('fb-rating');
+                const fbRatingValue = fbRatingSelect.value;
+                const fbComments = document.getElementById('fb-comments').value.trim();
+
+                const fbAlert = document.getElementById('feedback-alert');
+                const logsContainer = document.getElementById('logs-container');
+
+                const errorSpans = document.querySelectorAll('.error-msg');
+                errorSpans.forEach(span => span.style.display = 'none');
+
+                let isFbValid = true;
+
+                if (fbName === "") {
+                    document.getElementById('err-fb-name').style.display = 'inline';
+                    isFbValid = false;
+                }
+
+                if (fbReg === "") {
+                    document.getElementById('err-fb-reg').style.display = 'inline';
+                    isFbValid = false;
+                }
+
+                if (fbCatValue === "") {
+                    document.getElementById('err-fb-cat').style.display = 'inline';
+                    isFbValid = false;
+                }
+
+                if (fbRatingValue === "") {
+                    document.getElementById('err-fb-rating').style.display = 'inline';
+                    isFbValid = false;
+                }
+
+                if (fbComments.length < 20) {
+                    document.getElementById('err-fb-comm').style.display = 'inline';
+                    isFbValid = false;
+                }
+
+                if (isFbValid) {
+                    const ratingScore = parseInt(fbRatingValue, 10);
+                    feedbackRecords.push(ratingScore);
+
+                    const sum = feedbackRecords.reduce((acc, curr) => acc + curr, 0);
+                    const avgRating = (sum / feedbackRecords.length).toFixed(1);
+
+                    if (fbAlert) {
+                        fbAlert.textContent = "Feedback submitted successfully!";
+                        fbAlert.style.color = "green";
+                        fbAlert.style.fontWeight = "bold";
+                        fbAlert.style.marginBottom = "1rem";
+                    }
+
+                    const reviewLogCard = document.createElement('div');
+                    reviewLogCard.style.border = "1px solid gray";
+                    reviewLogCard.style.padding = "1rem";
+                    reviewLogCard.style.marginBottom = "1rem";
+                    reviewLogCard.style.background = "white";
+                    reviewLogCard.style.borderRadius = "4px";
+
+                    reviewLogCard.innerHTML = `
+                        <p><strong>Player:</strong> ${fbName} (${fbReg})</p>
+                        <p><strong>Event:</strong> ${fbCatText} | <strong>Rating Given:</strong> ${ratingScore}/5</p>
+                        <p><strong>Comments:</strong> "${fbComments}"</p>
+                        <hr style="border: 0; border-top: 1px dashed gray; margin: 0.5rem 0;">
+                        <p style="color: blue; font-weight: bold; margin: 0;">📊 Metrics Feed Summary: Total Reviews: ${feedbackRecords.length} | Average Rating Score: ${avgRating} / 5.0</p>
+                    `;
+
+                    if (logsContainer) {
+                        logsContainer.insertBefore(reviewLogCard, logsContainer.firstChild);
+                    }
+
+                    feedbackFormElement.reset();
+                }
+            });
+        }
+    </script>
+</body>
+</html>
