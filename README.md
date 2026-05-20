@@ -11,7 +11,7 @@ How to access this code using NPM commands in terminal?
 2. Open the file in vs code
 3. Run npm init -y in terminal of vs code
 4. Then run npm install electron --save-dev
-5. After that type  npm start to see the output in electrin app.
+5. After that type  npm start to see the output in electron app.
 
 Thank you!
 Regards Kumaravelan
