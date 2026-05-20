@@ -1,11 +1,5 @@
 # uid-hackathon-team-12
 Team 12
-Members:
-Kumaravelan Subramanian Sumithra [BL.SC.U4CSE25221]
-Shashank Bharadwaj [BL.SC.U4CSE25219]
-Sabesan S [BL.SC.U4CSE25231]
-Kowshik Reddy M [BL.SC.U4CSE25224]
-
 How to access this code using NPM commands in terminal?
 1. save all files
 2. Open the file in vs code
